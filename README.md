@@ -18,6 +18,7 @@ Mindestens ein anderer sollte den Pull Request approven, bevor er in den Main-Br
 
 ## Tools & Sprachen
 
-- Vue.js als Basis für das Frontend
-- Python für Backend
-- Docker zum Verpacken der App
+- [Vue.js](https://vuejs.org/) als Basis für das Frontend
+  - [Installation](https://vuejs.org/guide/quick-start.html)
+- [Python](https://www.python.org/) für Backend
+- [Docker](https://www.docker.com/) zum Verpacken der App
