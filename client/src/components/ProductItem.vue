@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PriceDisplay from './PriceDisplay.vue';
+import type { Product } from "@/models/Product";
 
 const props = defineProps<{
   product: Product,
@@ -8,8 +9,7 @@ const props = defineProps<{
 
 <template>
   <div class="bg-white rounded-lg shadow-lg max-w-sm w-full md:w-1/2 lg:w-1/3 m-4 overflow-hidden">
-    <img :src="`https://source.unsplash.com/random/600x300?cookie-${product.id}`" width="600" height="300"
-      :alt="product.name" />
+    <img :src="`https://source.unsplash.com/random/600x300?${image()}`" width="600" height="300" :alt="product.name" />
     <div class="flex mx-4 mt-4 mb-2">
       <h1 class="text-xl font-bold text-black flex-1">{{ product.name }}</h1>
       <PriceDisplay :price="product.price" class="ml-4 text-right" />
@@ -22,5 +22,6 @@ const props = defineProps<{
 </template>
 
 <script lang="ts">
-import { Product } from "@/models/Product";
+const imagesNames = ["cookie", "cookies", "cookie monster", "cookie jar", "cookie and cream", "chocolate cookie"];
+const image = () => imagesNames[Math.floor(Math.random() * imagesNames.length)];
 </script>
