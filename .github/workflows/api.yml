@@ -3,6 +3,7 @@ name: API
 on:
   push:
   release:
+    types: [published]
 
 jobs:
   build-docker:
@@ -25,7 +26,7 @@ jobs:
           tags: ghcr.io/sepbfws420a/sieben-zwerge-api:latest
       - name: Push latest image
         uses: docker/build-push-action@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref_name == 'main' }}
         with:
           context: "{{defaultContext}}:api"
           push: true
@@ -36,13 +37,13 @@ jobs:
         with:
           context: "{{defaultContext}}:api"
           push: true
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-api:${{ github.ref }}
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-api:${{ github.ref_name }}
 
   deploy-dev:
     runs-on: ubuntu-latest
     name: Deploy dev
     needs: [build-docker]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref_name == 'main'
     steps:
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.7
