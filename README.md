@@ -1,5 +1,16 @@
 # sieben-zwerge.de Web-Shop
 
+## Getting Started
+
+1. Alle [Tools](#tools--sprachen) installieren
+2. Client-Setup: Siehe [Readme](client/README.md) im `client`-Ordner
+
+## Links
+
+- [Production Seite](https://sep.marcelstruck.de)
+- [Dev Seite](https://sep-dev.marcelstruck.de)
+- Dev Datenbank Zugangsdaten siehe Teams
+
 ## Vorgehensweise
 
 Wöchentlicher Austausch entweder mittwochs oder donnerstags im Anschluss nach der Vorlesung.  
