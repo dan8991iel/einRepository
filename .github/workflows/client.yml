@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy dev
     needs: [build-npm, build-docker]
-    if: github.push == 'release' && github.ref == 'refs/heads/main'
+    if: ${{ github.event_name == 'release' && github.ref == 'refs/heads/main' }}
     steps:
       -
         name: Deploy to server
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy release
     needs: [build-npm, build-docker, deploy-dev]
-    if: github.event_name == 'release'
+    if: ${{ github.event_name == 'release' }}
     steps:
       -
         name: Deploy to server
