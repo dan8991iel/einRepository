@@ -60,7 +60,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy release
-    needs: [build-docker, deploy-dev]
+    needs: [build-docker]
     if: github.event_name == 'release'
     steps:
       - name: Deploy to server
