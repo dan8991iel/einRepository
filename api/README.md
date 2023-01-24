@@ -15,5 +15,5 @@ pip install -r requirements.txt
 ## Running Dev Environment
 
 ```
-flask --app main.py run
+flask --app app.py run
 ```
