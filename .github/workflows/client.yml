@@ -41,21 +41,21 @@ jobs:
         with:
           context: "{{defaultContext}}:client"
           push: false
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:latest
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
       - name: Push latest image
         uses: docker/build-push-action@v3
         if: ${{ github.ref_name == 'main' }}
         with:
           context: "{{defaultContext}}:client"
           push: true
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:latest
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
       - name: Build and push release image
         uses: docker/build-push-action@v3
         if: ${{ github.event_name == 'release' }}
         with:
           context: "{{defaultContext}}:client"
           push: true
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:${{ github.ref_name }}
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:${{ github.ref_name }} , ghcr.io/sepbfws420a/sieben-zwerge-client:latest
 
   deploy-dev:
     runs-on: ubuntu-latest
