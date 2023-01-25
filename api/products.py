@@ -1,4 +1,4 @@
-import mariadb
+import pymysql
 import sys
 import os
 import simplejson as json
@@ -21,7 +21,7 @@ config = {
 
 @products.route('/api/v1/products', methods=['GET'])
 def product_list():
-    conn = mariadb.connect(**config)
+    conn = pymysql.connect(**config)
     cur = conn.cursor()
 
     query = "select p.id, p.name, p.price, p.description, p.image_url, c.name as cat_name FROM product p LEFT JOIN " \

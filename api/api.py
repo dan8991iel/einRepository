@@ -1,6 +1,6 @@
 from flask import Flask
 #import flask_monitoringdashboard as dashboard
-from api.products import products
+from products import products
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
