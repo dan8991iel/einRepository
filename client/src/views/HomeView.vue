@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import ProductList from "@/components/ProductList.vue";
 import HeroHeader from "@/components/HeroHeader.vue";
+import { onMounted, ref, type Ref } from '@vue/runtime-core';
+import type { Product } from '@/models/Product';
+
+onMounted(() => {
+  fetchData();
+});
+
+const products: Ref<Product[]> = ref([]);
+
+async function fetchData() {
+  const result = await fetch(`${import.meta.env.VITE_API_PROT}://${import.meta.env.VITE_API_HOST}${import.meta.env.VITE_API_PATH}/products`);
+  products.value = await result.json();
+}
 </script>
 
 <template>
@@ -9,14 +22,3 @@ import HeroHeader from "@/components/HeroHeader.vue";
     <ProductList :products="products" />
   </main>
 </template>
-
-<script lang="ts">
-const products = [
-  { id: 1, name: "Kekse", price: 242 },
-  { id: 2, name: "Doppelkekse", price: 342 },
-  { id: 3, name: "Krümelkekse", price: 415 },
-  { id: 4, name: "Leckere Kekse", price: 252 },
-  { id: 5, name: "Teure Kekse", price: 762 },
-  { id: 6, name: "Oreo-Kekse", price: 1971 },
-];
-</script>

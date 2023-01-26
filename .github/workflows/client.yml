@@ -42,6 +42,7 @@ jobs:
           context: "{{defaultContext}}:client"
           push: false
           tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
+          build-args: VITE_API_HOST=sep-api.marcelstruck.de
       - name: Push latest image
         uses: docker/build-push-action@v3
         if: ${{ github.ref_name == 'main' }}
