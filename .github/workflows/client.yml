@@ -36,20 +36,20 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build latest image
+      - name: Build dev image
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:client"
           push: false
-          build-args: VITE_API_HOST=sep-api.marcelstruck.de
+          build-args: VITE_API_HOST=sep-api-dev.marcelstruck.de
           tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
-      - name: Push latest image
+      - name: Push dev image
         uses: docker/build-push-action@v3
         if: ${{ github.ref_name == 'main' }}
         with:
           context: "{{defaultContext}}:client"
           push: true
-          build-args: VITE_API_HOST=sep-api.marcelstruck.de
+          build-args: VITE_API_HOST=sep-api-dev.marcelstruck.de
           tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
       - name: Build and push release image
         uses: docker/build-push-action@v3
