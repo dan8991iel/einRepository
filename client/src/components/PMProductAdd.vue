@@ -59,7 +59,7 @@ function addProduct() {
   console.log(JSON.stringify(product));
 
 
-  fetch('https://sep-api-dev.marcelstruck.de/api/v1/products', {
+  fetch(`${import.meta.env.VITE_API_PROT}://${import.meta.env.VITE_API_HOST}${import.meta.env.VITE_API_PATH}/products`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
