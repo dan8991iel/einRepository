@@ -41,14 +41,15 @@ jobs:
         with:
           context: "{{defaultContext}}:client"
           push: false
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
           build-args: VITE_API_HOST=sep-api.marcelstruck.de
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
       - name: Push latest image
         uses: docker/build-push-action@v3
         if: ${{ github.ref_name == 'main' }}
         with:
           context: "{{defaultContext}}:client"
           push: true
+          build-args: VITE_API_HOST=sep-api.marcelstruck.de
           tags: ghcr.io/sepbfws420a/sieben-zwerge-client:dev
       - name: Build and push release image
         uses: docker/build-push-action@v3
@@ -56,6 +57,7 @@ jobs:
         with:
           context: "{{defaultContext}}:client"
           push: true
+          build-args: VITE_API_HOST=sep-api.marcelstruck.de
           tags: ghcr.io/sepbfws420a/sieben-zwerge-client:${{ github.ref_name }} , ghcr.io/sepbfws420a/sieben-zwerge-client:latest
 
   deploy-dev:

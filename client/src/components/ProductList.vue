@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import ProductItem from "./ProductItem.vue";
+import ProductListTile from "./ProductListTile.vue";
 
 defineProps(["products"]);
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center">
-    <ProductItem v-for="product in products" :key="product.id" :product="product" />
+  <div class="flex flex-wrap items-start justify-center">
+    <ProductListTile v-for="product in products" :key="product.id" :product="product" />
   </div>
 </template>
