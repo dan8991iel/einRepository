@@ -20,6 +20,28 @@ const router = createRouter({
       name: "contact",
       component: () => import("../views/ContactView.vue"),
     },
+    {
+      path: "/admin/products",
+      name: "ProductMaintenance",
+      component: () => import("../views/ProductMaintenanceView.vue"),
+      children: [
+        {
+          path: "add",
+          name: "product-add",
+          component: () => import("../views/admin/AddProductView.vue"),
+        },
+        {
+          path: "edit",
+          name: "product-edit",
+          component: () => import("../views/admin/AddProductView.vue"),
+        },
+        {
+          path: "remove",
+          name: "product-remove",
+          component: () => import("../views/admin/AddProductView.vue"),
+        },
+      ]
+    }
   ],
 });
 
