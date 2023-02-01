@@ -37,7 +37,7 @@ jobs:
         with:
           context: "{{defaultContext}}:api"
           push: true
-          tags: ghcr.io/sepbfws420a/sieben-zwerge-api:${{ github.ref_name }} , ghcr.io/sepbfws420a/sieben-zwerge-api:stable
+          tags: ghcr.io/sepbfws420a/sieben-zwerge-api:${{ github.ref_name }} , ghcr.io/sepbfws420a/sieben-zwerge-api:latest
 
   deploy-dev:
     runs-on: ubuntu-latest
