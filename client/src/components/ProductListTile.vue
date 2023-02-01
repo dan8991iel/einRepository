@@ -12,7 +12,7 @@ const cart = useCartStore();
 
 <template>
   <div class="w-full max-w-sm m-4 overflow-hidden bg-white rounded-lg shadow-lg md:w-1/2 lg:w-1/3">
-    <img :src="product.image_url" width="600" height="300" :alt="product.name" />
+    <img :src="product.image_url" :alt="product.name" class="object-cover w-full aspect-square" />
     <h3 class="mx-4 mt-4 font-semibold text-green-500 uppercase text-md">{{ product.category_name }}</h3>
     <div class="flex mx-4 mt-1 mb-2">
       <h1 class="flex-1 text-xl font-bold text-black">{{ product.name }}</h1>
