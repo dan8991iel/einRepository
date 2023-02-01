@@ -42,7 +42,9 @@ def add_product():
     product_to_add = request.get_json(force=True)
 
     if product_to_add['name'] == '':
-        return "Name missing!", 400
+        return "Name of product missing!", 400
+    elif product_to_add['category_name'] == '':
+        return "Name of category missing!", 400
     conn = pymysql.connect(**config)
     cur = conn.cursor()
 

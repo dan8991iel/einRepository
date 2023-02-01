@@ -1,12 +1,14 @@
 from flask import Flask
 #import flask_monitoringdashboard as dashboard
 from products import products
+from categories import categories
 from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 #dashboard.bind(app)
 app.register_blueprint(products)
+app.register_blueprint(categories)
 CORS(app)
 
 @app.route("/api/version")
