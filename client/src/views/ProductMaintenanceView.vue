@@ -3,7 +3,7 @@ import PMSidebar from '@/components/PMSidebar.vue';
 </script>
 
 <template>
-  <div class="flex">
+  <div class="md:flex">
     <PMSidebar class="min-w-fit" />
     <RouterView />
   </div>
