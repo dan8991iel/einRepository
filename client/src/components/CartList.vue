@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { CartItem } from '@/models/CartItem';
-import CartListTile from './CartListTile.vue';
+import type { CartItem } from "@/models/CartItem";
+import CartListTile from "./CartListTile.vue";
 
 defineProps<{ items: CartItem[] }>();
 </script>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PMSidebar from '@/components/PMSidebar.vue';
+import PMSidebar from "@/components/PMSidebar.vue";
 </script>
 
 <template>

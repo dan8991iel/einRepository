@@ -6,6 +6,10 @@ defineProps(["products"]);
 
 <template>
   <div class="flex flex-wrap items-start justify-center">
-    <ProductListTile v-for="product in products" :key="product.id" :product="product" />
+    <ProductListTile
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+    />
   </div>
 </template>

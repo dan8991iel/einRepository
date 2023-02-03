@@ -1,4 +1,4 @@
-import CartView from '@/views/CartView.vue';
+import CartView from "@/views/CartView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import("../views/ContactView.vue"),
     },
     {
+      path: "/auth",
+      name: "auth",
+      component: () => import("../views/AuthView.vue"),
+    },
+    {
       path: "/admin/products",
       name: "ProductMaintenance",
       component: () => import("../views/ProductMaintenanceView.vue"),
@@ -40,8 +45,8 @@ const router = createRouter({
           name: "product-remove",
           component: () => import("../views/admin/AddProductView.vue"),
         },
-      ]
-    }
+      ],
+    },
   ],
 });
 

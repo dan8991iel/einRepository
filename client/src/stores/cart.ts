@@ -1,23 +1,33 @@
 import { defineStore } from "pinia";
-import type { Product } from '@/models/Product';
-import { CartItem } from '@/models/CartItem';
+import type { Product } from "@/models/Product";
+import { CartItem } from "@/models/CartItem";
 
-export const useCartStore = defineStore('cart', {
-  state: (): { items: Map<number, CartItem>, order: number[] } => ({ items: new Map(), order: [] }),
+export const useCartStore = defineStore("cart", {
+  state: (): { items: Map<number, CartItem>; order: number[] } => ({
+    items: new Map(),
+    order: [],
+  }),
   getters: {
-    sortedItems: (state) => state.order.map((productId) => state.items.get(productId)!),
+    sortedItems: (state) =>
+      state.order.map((productId) => state.items.get(productId)!),
     productCount: (state) => state.items.size,
-    itemCount: (state) => Array.from(state.items.values())
-      .map((item) => item.count)
-      .reduce((acc, item) => acc + item, 0),
-    totalPrice: (state) => Array.from(state.items.values())
-      .map((item) => item.totalPrice)
-      .reduce((acc, item) => acc + item, 0),
+    itemCount: (state) =>
+      Array.from(state.items.values())
+        .map((item) => item.count)
+        .reduce((acc, item) => acc + item, 0),
+    totalPrice: (state) =>
+      Array.from(state.items.values())
+        .map((item) => item.totalPrice)
+        .reduce((acc, item) => acc + item, 0),
   },
   actions: {
     add(product: Product, count: number = 1) {
-      if (count < 1) { return; }
-      if (count !== Math.round(count)) { return; }
+      if (count < 1) {
+        return;
+      }
+      if (count !== Math.round(count)) {
+        return;
+      }
 
       count = Math.min(count, 99);
 
@@ -33,8 +43,12 @@ export const useCartStore = defineStore('cart', {
       }
     },
     setCount(product: Product, count: number): void {
-      if (count < 1) { return; }
-      if (count !== Math.round(count)) { return; }
+      if (count < 1) {
+        return;
+      }
+      if (count !== Math.round(count)) {
+        return;
+      }
 
       count = Math.min(count, 99);
 
@@ -47,9 +61,15 @@ export const useCartStore = defineStore('cart', {
     },
     removeCount(product: Product, count: number) {
       const item = this.items.get(product.id);
-      if (!item) { return; }
-      if (count < 1) { return; }
-      if (count !== Math.round(count)) { return; }
+      if (!item) {
+        return;
+      }
+      if (count < 1) {
+        return;
+      }
+      if (count !== Math.round(count)) {
+        return;
+      }
 
       item.count -= count;
       if (item.count <= 0) {
@@ -68,6 +88,6 @@ export const useCartStore = defineStore('cart', {
     clear() {
       this.items.clear();
       this.order = [];
-    }
-  }
-})
+    },
+  },
+});

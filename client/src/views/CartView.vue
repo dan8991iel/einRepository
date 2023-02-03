@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CartList from '@/components/CartList.vue';
-import PriceDisplay from '@/components/PriceDisplay.vue';
-import { useCartStore } from '@/stores/cart';
+import CartList from "@/components/CartList.vue";
+import PriceDisplay from "@/components/PriceDisplay.vue";
+import { useCartStore } from "@/stores/cart";
 
 const cart = useCartStore();
 </script>
@@ -10,11 +10,18 @@ const cart = useCartStore();
   <main class="max-w-full mx-auto my-4 lg:my-12 lg:max-w-3xl">
     <div class="left-0 right-0 p-8 mx-4 bg-white rounded-lg">
       <h1 class="mb-4 text-4xl font-black">Warenkorb</h1>
-      <div class="flex flex-col items-center justify-center w-full h-60" v-if="cart.itemCount == 0">
+      <div
+        class="flex flex-col items-center justify-center w-full h-60"
+        v-if="cart.itemCount == 0"
+      >
         <mdicon name="cart-outline" class="mb-4 text-gray-600" size="42" />
-        <h2 class="mb-2 text-2xl font-medium text-gray-600">Der Warenkorb ist leer</h2>
-        <h3 class="w-full max-w-md text-center text-gray-600 text-md">Stöber durch unser vielfältiges Sortiment und
-          mach den Warenkorb glücklich</h3>
+        <h2 class="mb-2 text-2xl font-medium text-gray-600">
+          Der Warenkorb ist leer
+        </h2>
+        <h3 class="w-full max-w-md text-center text-gray-600 text-md">
+          Stöber durch unser vielfältiges Sortiment und mach den Warenkorb
+          glücklich
+        </h3>
       </div>
 
       <CartList :items="cart.sortedItems" v-if="cart.itemCount > 0" />
