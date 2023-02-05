@@ -1,10 +1,3 @@
-<style>
-  .map{  
-    filter:  url("#onlyMarker");
-  }
-  
-</style>
-
 <template>
   <section class="relative text-gray-600 body-font">
     <div class="container flex flex-wrap px-5 py-5 mx-auto sm:flex-nowrap">
@@ -28,6 +21,7 @@
         <iframe
           class="map absolute inset-0"
           title="map"
+          style="filter:  url('#onlyMarker')"
           marginheight="0"
           marginwidth="0"
           scrolling="no"
