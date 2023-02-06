@@ -37,7 +37,7 @@ def product_list():
     return jsonify(json_data)
 
 
-@products.route('/api/v1/products/edit', methods=['POST'])
+@products.route('/api/v1/products', methods=['POST'])
 def add_product():
     product = request.get_json(force=True)
 
@@ -53,6 +53,7 @@ def add_product():
 
     insert_product_sql = "insert into product (name, price, description, image_url, category_id) " \
                          "values (%s, %s, %s, %s, %s)"
+
     cur.execute(insert_product_sql,
                 (product['name'],
                  float(product['price']),
@@ -65,8 +66,9 @@ def add_product():
 
 
 @products.route('/api/v1/products/edit', methods=['POST'])
-def add_product():
+def edit_product():
     product = request.get_json(force=True)
+    
     if product['name'] == '':
         return "Name of product missing!", 400
     elif product['category_name'] == '':
@@ -91,7 +93,7 @@ def add_product():
                  int(product['id']),))
     conn.commit()
     conn.close()
-    return "Product successfully added", 200
+    return "Product successfully edited", 200
 
 
 def get_category(product):
