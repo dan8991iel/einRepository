@@ -1,6 +1,6 @@
 <template>
-    <div class="flex w-full">
-      <div class="mb-4">
+    <div class="flex flex-col w-full p-4">
+      <div class="mb-4 w-full p-6 bg-white rounded-lg">
         <label class="block mb-2 font-medium text-gray-700" for="select_product">
           Select Product:
         </label>
@@ -12,6 +12,8 @@
           <option v-for="product in products" :value="product">{{ product.name }}</option>
         </select>
       </div>
+
+
       <form @submit.prevent="editProduct" class="w-full p-6 bg-white rounded-lg">
         <div class="mb-4">
           <label class="block mb-2 font-medium text-gray-700" for="name">
@@ -60,13 +62,13 @@
             required
           />
         </div>
-        <div class="flex items-center justify-end">
-          <button
-            class="bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600"
+        <div class="flex items-center justify-start">
+            <button
+            class="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600"
             type="submit"
-          >
-            Edit Product
-          </button>
+            >
+                Save Changes
+            </button>
         </div>
       </form>
     </div>
@@ -76,8 +78,10 @@ import { ref } from "vue";
 import type { Ref } from "vue";
 import type { Product } from "@/models/Product";
 
+
 const selectedProduct: Ref<Product> = ref({} as Product);
-const products: Product[] = [
+const products: Ref<Product[]> = ref([]);
+const productsMock: Product[] = [
     {
     id: 1,
     name: "Product 1",
@@ -104,7 +108,21 @@ const products: Product[] = [
     }
 ];
 
+async function getproducts() {
+  const result = await fetch(
+    `${import.meta.env.VITE_API_PROT}://${import.meta.env.VITE_API_HOST}${
+      import.meta.env.VITE_API_PATH
+    }/products`
+  );
+  products.value = await result.json();
+  console.log(products.value);
+}
 
+await getproducts();
+
+function getSelectedProductID() {
+  console.log(selectedProduct.value.id);
+}
 
 function editProduct() {
     console.log("Edited Product: ", selectedProduct.value);
