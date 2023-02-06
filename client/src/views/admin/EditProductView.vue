@@ -3,5 +3,7 @@ import PMProductEditVue from "@/components/PMProductEdit.vue";
 </script>
 
 <template>
-  <PMProductEditVue />
+  <Suspense>
+    <PMProductEditVue />
+  </Suspense>
 </template>
