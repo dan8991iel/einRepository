@@ -77,7 +77,7 @@
         <label class="block mb-2 font-medium text-gray-700" for="image"
           >Image:</label
         >
-        <ImageUpload  v-model:image-url="selectedProduct.image_url" />
+        <ImageUpload  v-model:image-url="selectedProduct.image_url"/>
         </div>
         <div class="flex items-center justify-start">
             <button
@@ -97,8 +97,9 @@
 <script setup lang="ts">
 import { ref, type ButtonHTMLAttributes, type FormHTMLAttributes, type HTMLAttributes } from "vue";
 import type { Ref } from "vue";
+import  { computed } from "vue";
 import type { Product } from "@/models/Product";
-import ImageUpload from "./ImageUpload.vue";
+import   ImageUpload from "./ImageUpload.vue";
 
 
 const selectedProduct: Ref<Product> = ref({} as Product);
@@ -123,10 +124,10 @@ async function getproducts() {
 await getproducts();
 
 function updateForm() {
-    console.log("Edited Product: ", selectedProduct.value);
     let elements = document.getElementsByClassName('inputSection') as HTMLCollectionOf<HTMLElement>;
     let button = document.getElementById('submit-button') as HTMLInputElement | null;
 
+        
     if(selectedProduct.value.id === 0){ 
         for(let element of elements){
             element.setAttribute("style", "background-color: lightgray;pointer-events: none;");
@@ -145,5 +146,7 @@ function updateForm() {
 function editProduct() {
     console.log("Edited Product: ", selectedProduct.value);
 }
+
+
 
 </script>
