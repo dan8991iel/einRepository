@@ -72,7 +72,9 @@
         </div>
       </form>
     </div>
-  </template>
+</template>
+
+
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
@@ -81,32 +83,6 @@ import type { Product } from "@/models/Product";
 
 const selectedProduct: Ref<Product> = ref({} as Product);
 const products: Ref<Product[]> = ref([]);
-const productsMock: Product[] = [
-    {
-    id: 1,
-    name: "Product 1",
-    price: 9.99,
-    description: "This is a sample product",
-    category_name: "Category 1",
-    image_url: ""
-    },
-    {
-    id: 2,
-    name: "Product 2",
-    price: 9.99,
-    description: "This is a sample product",
-    category_name: "Category 1",
-    image_url: ""
-    },
-    {
-    id: 3,
-    name: "Product 3",
-    price: 9.99,
-    description: "This is a sample product",
-    category_name: "Category 1",
-    image_url: ""
-    }
-];
 
 async function getproducts() {
   const result = await fetch(
@@ -119,10 +95,6 @@ async function getproducts() {
 }
 
 await getproducts();
-
-function getSelectedProductID() {
-  console.log(selectedProduct.value.id);
-}
 
 function editProduct() {
     console.log("Edited Product: ", selectedProduct.value);
