@@ -5,3 +5,4 @@ Flask-Cors~=3.0.10
 PyMySQL~=1.0.2
 python-dotenv~=0.21.1
 gunicorn~=20.1.0
+flask-firebase-admin~=0.2.4

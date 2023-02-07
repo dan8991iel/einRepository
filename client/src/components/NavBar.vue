@@ -6,6 +6,7 @@ import LoginNavbarIcon from "./LoginNavbarIcon.vue";
 import ShoppingCartNavbarIcon from "./ShoppingCartNavbarIcon.vue";
 
 const user = useCurrentUser();
+user.value?.getIdToken().then(console.log);
 </script>
 
 <template>
