@@ -38,7 +38,7 @@ def escalate_privileges():
     custom_claims["role"] = "admin"
 
     auth.set_custom_user_claims(uid=uid, custom_claims=custom_claims)
-    return {"message": f"You are now admin", "paload": request.jwt_payload}
+    return {"message": f"You are now admin", "payload": request.jwt_payload}
 
 
 if __name__ == "__main__":
