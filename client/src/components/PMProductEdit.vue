@@ -1,8 +1,4 @@
 <style>
-    .inputSection{
-        background-color: lightgray;
-        pointer-events: none;
-    } 
 
 </style>
 
@@ -42,7 +38,7 @@
             Price:
           </label>
           <input
-            class="w-full p-2 border border-gray-400 rounded-lg inputSection"
+            class="w-full p-2 border border-gray-400 rounded-lg inputSection disabled:bg-gray-300 disabled:pointer-events-none"
             v-model="selectedProduct.price"
             type="number"
             step="any"
@@ -55,7 +51,7 @@
             Description:
           </label>
           <textarea
-            class="w-full p-2 border border-gray-400 rounded-lg inputSection"
+            class="w-full p-2 border border-gray-400 rounded-lg inputSection disabled:bg-gray-300 disabled:pointer-events-none"
             v-model="selectedProduct.description"
             id="description"
             required
@@ -66,7 +62,7 @@
             Category:
           </label>
           <input
-            class="w-full p-2 border border-gray-400 rounded-lg inputSection"
+            class="w-full p-2 border border-gray-400 rounded-lg inputSection disabled:bg-gray-300 disabled:pointer-events-none"
             v-model="selectedProduct.category_name"
             type="text"
             id="category"
@@ -95,17 +91,21 @@
 
 
 <script setup lang="ts">
-import { ref, type ButtonHTMLAttributes, type FormHTMLAttributes, type HTMLAttributes } from "vue";
+import { ref, onMounted } from "vue";
 import type { Ref } from "vue";
 import  { computed } from "vue";
 import type { Product } from "@/models/Product";
 import   ImageUpload from "./ImageUpload.vue";
+import { mdiConsoleLine } from "@mdi/js";
 
+const emptyProduct: Product = {id:0, name:'', price:null, description:'', category_name:'', image_url:''}
 
-const selectedProduct: Ref<Product> = ref({} as Product);
+const selectedProduct: Ref<Product> = ref(emptyProduct as Product);
 const products: Ref<Product[]> = ref([]);
 
-
+onMounted(() => {
+  updateForm()
+})
 
 
 async function getproducts() {
@@ -117,26 +117,32 @@ async function getproducts() {
   products.value = await result.json();
   console.log(products.value);
 
-  const emptySlot : Product = {id:0,name:'----CLEAR----',price:0,description:'',category_name:'',image_url:''};
-  products.value.unshift(emptySlot);
+  //const emptySlot : Product = emptyProduct;
+  products.value.unshift(emptyProduct);
 }
 
-await getproducts();
+await getproducts()//.then(()=>updateForm());
 
-function updateForm() {
-    let elements = document.getElementsByClassName('inputSection') as HTMLCollectionOf<HTMLElement>;
+
+
+
+function updateForm(){
+    let elements = document.getElementsByClassName('inputSection') as HTMLCollectionOf<HTMLInputElement>;
     let button = document.getElementById('submit-button') as HTMLInputElement | null;
-
+    console.log(elements);
         
-    if(selectedProduct.value.id === 0){ 
+    console.log(selectedProduct.value.id);
+    if(selectedProduct.value.id === 0 || selectedProduct.value.id === undefined || selectedProduct.value.id === null){ 
         for(let element of elements){
-            element.setAttribute("style", "background-color: lightgray;pointer-events: none;");
+            //element.setAttribute("style", "background-color: lightgray;pointer-events: none;");
+            element.setAttribute("disabled", "");
         }
         button?.setAttribute("disabled", "");
     }
     else{
         for(let element of elements){
-            element.setAttribute("style", "background-color: white;pointer-events: all;");
+            //element.setAttribute("style", "background-color: white;pointer-events: all;");
+            element.removeAttribute('disabled')
         }
         button?.removeAttribute('disabled')
     }
