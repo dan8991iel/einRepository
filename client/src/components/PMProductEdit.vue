@@ -100,6 +100,9 @@ import { mdiConsoleLine } from "@mdi/js";
 
 const emptyProduct: Product = {id:0, name:'', price:null, description:'', category_name:'', image_url:''}
 
+//To reset seperate product informations
+var selectedProductTemp: Ref<Product> = ref(emptyProduct as Product);
+
 const selectedProduct: Ref<Product> = ref(emptyProduct as Product);
 const products: Ref<Product[]> = ref([]);
 
@@ -127,21 +130,19 @@ await getproducts()//.then(()=>updateForm());
 
 
 function updateForm(){
+    Object.assign(selectedProductTemp, selectedProduct)
     let elements = document.getElementsByClassName('inputSection') as HTMLCollectionOf<HTMLInputElement>;
     let button = document.getElementById('submit-button') as HTMLInputElement | null;
-    console.log(elements);
         
     console.log(selectedProduct.value.id);
-    if(selectedProduct.value.id === 0 || selectedProduct.value.id === undefined || selectedProduct.value.id === null){ 
+    if(selectionEmpty()){ 
         for(let element of elements){
-            //element.setAttribute("style", "background-color: lightgray;pointer-events: none;");
             element.setAttribute("disabled", "");
         }
         button?.setAttribute("disabled", "");
     }
     else{
         for(let element of elements){
-            //element.setAttribute("style", "background-color: white;pointer-events: all;");
             element.removeAttribute('disabled')
         }
         button?.removeAttribute('disabled')
@@ -150,8 +151,26 @@ function updateForm(){
 
 
 function editProduct() {
+    console.log("Org Product: ", selectedProductTemp.value);
     console.log("Edited Product: ", selectedProduct.value);
 }
+
+
+function resetForm(){
+    if(selectionEmpty()){
+        selectedProduct.value = emptyProduct;
+    }else{
+
+    }
+}
+
+function selectionEmpty(){
+  if(selectedProduct.value.id === 0 || selectedProduct.value.id === undefined || selectedProduct.value.id === null){ 
+    return true
+  }
+  return false
+}
+
 
 
 
