@@ -34,7 +34,7 @@ def whoami():
 def escalate_privileges():
     uid = request.jwt_payload['uid']
     user = auth.get_user(uid=uid)
-    custom_claims = user.custom_claims
+    custom_claims = user.custom_claims if user.custom_claims != None else {}
     custom_claims["role"] = "admin"
 
     auth.set_custom_user_claims(uid=uid, custom_claims=custom_claims)
