@@ -28,8 +28,10 @@ const cart = useCartStore();
 
       <div class="flex justify-end w-full mt-4" v-if="cart.itemCount > 0">
         <div class="text-right">
+           <h3 class="mb-1 text-sm text-gray-600">Lieferkosten</h3>
+           <PriceDisplay :price="2" class="mb-1" />
           <h3 class="mb-1 text-sm text-gray-600">Gesamtpreis</h3>
-          <PriceDisplay :price="cart.totalPrice" class="mb-1" />
+          <PriceDisplay :price="cart.totalPrice + 2" class="mb-1" />
           <h4 class="text-xs text-gray-600">inkl. Mwst., zzgl. Versand</h4>
         </div>
       </div>
