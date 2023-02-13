@@ -17,8 +17,8 @@ export const useCartStore = defineStore("cart", {
         .reduce((acc, item) => acc + item, 0),
     totalPrice: (state) =>
       Array.from(state.items.values())
-        .map((item) => item.totalPrice)
-        .reduce((acc, item) => acc + item, 0),
+        .map((item) => item.totalPrice?item.totalPrice:0)
+        .reduce((acc, item) => acc + item , 0),
   },
   actions: {
     add(product: Product, count: number = 1) {
