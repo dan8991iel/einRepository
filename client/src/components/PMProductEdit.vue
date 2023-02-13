@@ -84,6 +84,16 @@
             >
                 Save Changes
             </button>
+            <button
+              id="rest-button"
+              class="px-4 py-2 mx-2 text-white enabled:bg-green-500 rounded-lg enabled:hover:bg-green-600 disabled:bg-green-900 disabled:pointer-events-none"
+              @click="resetForm"
+              disabled
+              value="ignore" formnovalidate
+              type="button"
+            >
+              Reset Form
+            </button>
         </div>
       </form>
     </div>
@@ -101,7 +111,7 @@ import { mdiConsoleLine } from "@mdi/js";
 const emptyProduct: Product = {id:0, name:'', price:null, description:'', category_name:'', image_url:''}
 
 //To reset seperate product informations
-var selectedProductTemp: Ref<Product> = ref(emptyProduct as Product);
+//var selectedProductTemp: Ref<Product> = ref(emptyProduct as Product);
 
 const selectedProduct: Ref<Product> = ref(emptyProduct as Product);
 const products: Ref<Product[]> = ref([]);
@@ -130,38 +140,85 @@ await getproducts()//.then(()=>updateForm());
 
 
 function updateForm(){
-    Object.assign(selectedProductTemp, selectedProduct)
+    //selectedProductTemp.value = {id: selectedProduct.value.id, name: selectedProduct.value.name, price: selectedProduct.value.price, description: selectedProduct.value.description, category_name: selectedProduct.value.category_name, image_url:selectedProduct.value.image_url}; 
     let elements = document.getElementsByClassName('inputSection') as HTMLCollectionOf<HTMLInputElement>;
-    let button = document.getElementById('submit-button') as HTMLInputElement | null;
+    let subButton = document.getElementById('submit-button') as HTMLInputElement | null;
+    let resButton = document.getElementById('rest-button') as HTMLInputElement | null;
         
     console.log(selectedProduct.value.id);
     if(selectionEmpty()){ 
         for(let element of elements){
             element.setAttribute("disabled", "");
         }
-        button?.setAttribute("disabled", "");
+        subButton?.setAttribute("disabled", "");
+        resButton?.setAttribute("disabled", "");
     }
     else{
         for(let element of elements){
             element.removeAttribute('disabled')
         }
-        button?.removeAttribute('disabled')
+        subButton?.removeAttribute('disabled')
+        resButton?.removeAttribute('disabled')
     }
 }
 
 
 function editProduct() {
-    console.log("Org Product: ", selectedProductTemp.value);
-    console.log("Edited Product: ", selectedProduct.value);
+  const product: Product = {
+    id: selectedProduct.value.id,
+    name: selectedProduct.value.name,
+    price: Number(selectedProduct.value.price),
+    description: selectedProduct.value.description,
+    image_url: selectedProduct.value.image_url,
+    category_name: selectedProduct.value.category_name,
+  };
+
+  console.log(JSON.stringify(product));
+
+  fetch(
+    `${import.meta.env.VITE_API_PROT}://${import.meta.env.VITE_API_HOST}${
+      import.meta.env.VITE_API_PATH
+    }/products/edit`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    }
+  )
+    .then((response: Response) => {
+      if (!response.ok) {
+        console.log("NOT OKAY");
+        throw new Error(response.statusText);
+      }
+      console.log(" OKAY");
+      return response.json();
+    })
+    .then((data: any) => {
+      console.log(" DATA");
+      console.log("Product added successfully", data);
+    })
+    .catch((error: Error) => {
+      console.error("Error adding product:", error);
+    });
 }
 
 
 function resetForm(){
-    if(selectionEmpty()){
+    /*if(selectionEmpty()){
         selectedProduct.value = emptyProduct;
     }else{
-
+      selectedProduct.value = {id: selectedProductTemp.value.id, name: selectedProductTemp.value.name, price: selectedProductTemp.value.price, description: selectedProductTemp.value.description, category_name: selectedProductTemp.value.category_name, image_url:selectedProductTemp.value.image_url};
     }
+
+    let dropDownBox : HTMLSelectElement= document.getElementById("select_product") as HTMLSelectElement;
+    if(dropDownBox){
+      dropDownBox.value = selectedProduct.value.name;
+    }*/
+    getproducts();
+    selectedProduct.value = emptyProduct;
+    updateForm();
 }
 
 function selectionEmpty(){
