@@ -9,7 +9,10 @@ export class CartItem {
     this.count = count;
   }
 
-  get totalPrice(): number {
-    return this.product.price * this.count;
+  get totalPrice(): number | null {
+    if(this.product.price){
+      return this.product.price * this.count;
+    }
+    return null
   }
 }

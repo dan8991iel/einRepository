@@ -24,7 +24,7 @@ const cart = useCartStore();
     </h3>
     <div class="flex mx-4 mt-1 mb-2">
       <h1 class="flex-1 text-xl font-bold text-black">{{ product.name }}</h1>
-      <PriceDisplay :price="product.price" class="ml-4 text-right" />
+      <PriceDisplay v-if="product.price" :price="product.price" class="ml-4 text-right" />
     </div>
     <p class="mx-4 mt-2 text-gray-600">{{ product.description }}</p>
     <div class="flex justify-end mx-4 mt-4 mb-4">
