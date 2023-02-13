@@ -2,6 +2,7 @@ from flask import Flask, request
 # import flask_monitoringdashboard as dashboard
 from products import products
 from categories import categories
+from orders import orders
 from flask_cors import CORS
 from flask_firebase_admin import FirebaseAdmin
 from firebase_admin import auth
@@ -11,6 +12,7 @@ app.config['JSON_SORT_KEYS'] = False
 # dashboard.bind(app)
 app.register_blueprint(products)
 app.register_blueprint(categories)
+app.register_blueprint(orders)
 CORS(app)
 firebase = FirebaseAdmin(app)
 
