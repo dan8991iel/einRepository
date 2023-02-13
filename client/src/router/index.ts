@@ -1,4 +1,6 @@
 import CartView from "@/views/CartView.vue";
+import OrderCompletionView from "@/views/OrderCompletionView.vue";
+import ClosingOrdersView from "@/views/ClosingOrdersView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
@@ -14,6 +16,16 @@ const router = createRouter({
       path: "/cart",
       name: "cart",
       component: CartView,
+    },
+    {
+      path: "/ordercompletion",
+      name: "ordercompletion",
+      component: OrderCompletionView,
+    },
+    {
+      path: "/closingorders",
+      name: "closingorders",
+      component: ClosingOrdersView,
     },
     {
       path: "/contact",
