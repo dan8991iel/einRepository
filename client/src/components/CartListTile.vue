@@ -48,7 +48,7 @@ watch(count, (count) => cart.setCount(props.item.product, count));
     <div class="ml-12 text-right">
       <h5 class="mb-1 text-sm text-gray-600">Preis</h5>
       <div class="h-[42px] items-center flex">
-        <PriceDisplay :price="item.totalPrice"></PriceDisplay>
+        <PriceDisplay v-if="item.totalPrice" :price="item.totalPrice"></PriceDisplay>
       </div>
     </div>
   </div>

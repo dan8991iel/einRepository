@@ -1,13 +1,27 @@
 <template>
   <section class="relative text-gray-600 body-font">
-    <div class="container flex flex-wrap px-5 py-24 mx-auto sm:flex-nowrap">
+    <div class="container flex flex-wrap px-5 py-5 mx-auto sm:flex-nowrap">
       <div
-        class="relative flex items-end justify-start p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10 aspect-[16/9]"
+        class="relative flex items-end justify-start p-10  bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10 aspect-[16/9]"
       >
+        <svg id="svg-filter" class="absolute top-0 pointer-events-none">
+          <filter id="onlyMarker">
+            <feColorMatrix in="SourceGraphic" result="BigRed" type="matrix" values="
+              0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              4 -20 -20 0 -0.5">
+          <!--  R G B  A (?) -->
+            </feColorMatrix>
+            <feColorMatrix type="saturate" values="0" in="SourceGraphic" result="GreySource"/>
+            <feComposite operator="in" in="SourceGraphic" in2="BigRed" result="RedMarker"/>
+            <feComposite operator="atop" in="RedMarker" in2="GreySource" result="final"/>
+          </filter>
+        </svg>
         <iframe
-          class="absolute inset-0"
-          style="filter: grayscale(1) contrast(1.2) opacity(0.4)"
+          class="map absolute inset-0"
           title="map"
+          style="filter:  url('#onlyMarker')"
           marginheight="0"
           marginwidth="0"
           scrolling="no"
@@ -57,11 +71,11 @@
           Derzeit nehmen wir leider noch keine Bestellungen über unseren Webshop
           an.
         </h3>
-        <h3 class="mt-4 text-lg text-center">
+        <h3 class="mt-4 text-lg">
           Sie können dennoch Produkte bestellen, indem Sie uns per E-Mail,
           Telefon, Brieftaube oder Fax kontaktieren.
         </h3>
-        <h3 class="mt-4 text-lg text-center">
+        <h3 class="mt-4 text-lg">
           Geben Sie dazu bitte Ihre Kontaktdaten, Ihre Zahlungsdaten, die
           Produktnamen sowie Mengen an.
         </h3>

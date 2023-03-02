@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex w-full p-4">
     <form @submit.prevent="addProduct" class="w-full p-6 bg-white rounded-lg">
       <div class="mb-4">
         <label class="block mb-2 font-medium text-gray-700" for="name"
@@ -54,19 +54,21 @@
         >
         <ImageUpload v-model:image-url="image" />
       </div>
-      <button
-        class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-        type="submit"
-      >
-        Add Product
-      </button>
-      <button
-        class="px-4 py-2 mx-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-        @click="resetForm"
-        type="reset"
-      >
-        Reset Form
-      </button>
+      <div class="flex items-center justify-start">
+        <button
+          class="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600"
+          type="submit"
+        >
+          Add Product
+        </button>
+        <button
+          class="px-4 py-2 mx-2 text-white bg-green-500 rounded-lg hover:bg-green-600"
+          @click="resetForm"
+          type="reset"
+        >
+          Reset Form
+        </button>
+      </div>
     </form>
   </div>
 </template>

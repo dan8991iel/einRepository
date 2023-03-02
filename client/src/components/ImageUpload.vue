@@ -40,7 +40,7 @@ watchEffect(() => {
 <template>
   <div class="flex">
     <button
-      class="self-start w-full p-2 border border-gray-400 rounded-lg hover:bg-gray-100"
+      class="inputSection self-start w-full p-2 border border-gray-400 rounded-lg enabled:hover:bg-gray-100 disabled:bg-gray-300 disabled:pointer-events-none"
       type="button"
       @click="
         open({ accept: 'image/*', multiple: false });
