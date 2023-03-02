@@ -1,6 +1,6 @@
 # sieben-zwerge.de Web-Shop
 
-## Getting Started
+## einRepository
 
 1. Alle [Tools](#tools--sprachen) installieren
 2. Client-Setup: Siehe [Readme](client/README.md) im `client`-Ordner
