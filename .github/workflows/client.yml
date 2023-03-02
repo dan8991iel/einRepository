@@ -77,7 +77,6 @@ jobs:
             cd fhdw/sep-dev
             docker-compose pull client
             docker-compose up -d client
-
   deploy:
     runs-on: ubuntu-latest
     name: Deploy release

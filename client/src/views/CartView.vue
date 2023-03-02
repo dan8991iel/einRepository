@@ -28,9 +28,16 @@ const cart = useCartStore();
 
       <div class="flex justify-end w-full mt-4" v-if="cart.itemCount > 0">
         <div class="text-right">
+           <h3 class="mb-1 text-sm text-gray-600">Lieferkosten</h3>
+           <PriceDisplay :price="2" class="mb-1" />
           <h3 class="mb-1 text-sm text-gray-600">Gesamtpreis</h3>
-          <PriceDisplay v-if="cart.totalPrice" :price="cart.totalPrice" class="mb-1" />
+          <PriceDisplay v-if="cart.totalPrice" :price="cart.totalPrice+ 2" class="mb-1"/>
           <h4 class="text-xs text-gray-600">inkl. Mwst., zzgl. Versand</h4>
+          <button class="inline-block px-4 py-2 mt-4 font-bold text-white transition-shadow bg-green-500 rounded-lg hover:shadow-lg active:bg-green-600"><RouterLink to="/ordercompletion">
+        <div class="text-center">
+          <h3>Jetzt Bestellen</h3>
+        </div>
+      </RouterLink></button>
         </div>
       </div>
     </div>
