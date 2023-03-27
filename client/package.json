@@ -9,7 +9,9 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@mdi/js": "^7.1.96",
@@ -43,7 +45,7 @@
     "tailwindcss": "^3.2.4",
     "typescript": "~4.7.4",
     "vite": "^4.0.0",
-    "vitest": "^0.25.6",
+    "vitest": "^0.25.8",
     "vue-tsc": "^1.0.12"
   }
 }
