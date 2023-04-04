@@ -17,5 +17,6 @@ describe("removeFromCart",()=>{
         store.add(product);
         store.removeAllOfProduct(product);
         expect(Array.from (store.items.values())).not.toContainEqual(new CartItem(product, 1));
+        expect(store.items).empty;
     })
 })
