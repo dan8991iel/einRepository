@@ -44,7 +44,7 @@
           class="w-full p-2 border border-gray-400 rounded-lg"
           v-model="category_name"
           type="string"
-          id="category_name"
+          id="category"
           required
         />
       </div>
