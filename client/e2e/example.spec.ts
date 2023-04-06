@@ -61,7 +61,7 @@ await conn.query("truncate table product");
 const res = await conn.query("INSERT INTO product (name, price, description, image_url, category_id) "+
 "values ('Keks', 20.00, 'Schoko', 'https://image.essen-und-trinken.de/13073754/t/ld/v3/w960/r1/-/schokokekse-adobestock-245097665.jpg', 1)");
 
-await page.waitForTimeout(400);
+await page.waitForTimeout(1000);
 await page.goto('http://localhost:5173/');
 await expect(page.locator("h1").last()).toHaveText(/Keks/);
 
@@ -69,11 +69,12 @@ await expect(page.locator("h1").last()).toHaveText(/Keks/);
 await page.goto('http://localhost:5173/admin/products/edit');
 await page.getByLabel("Select Product:").selectOption("Keks");
 await page.getByLabel("Name:").fill("Schokokeks");
-await page.getByText("Save Changes").last().click();
+await page.getByText("Save Changes").click();
 
-await page.waitForTimeout(400);
+await page.waitForTimeout(1000);
 await page.goto('http://localhost:5173/');
-await expect(page.locator("h1").last()).not.toHaveText(/Schokokeks/);
+await page.screenshot({path: 'test.png'})
+await expect(page.locator("h1").last()).toHaveText(/Schokokeks/);
 
 });
 
