@@ -40,7 +40,7 @@ test('has title', async ({ page }) => {
 });
 
 
-/*test('removed Product', async ({ page }) => {
+test('edit Product', async ({ page }) => {
 
   const pool=mariadb.createPool({
     user:"test_webshop",
@@ -65,13 +65,17 @@ await page.waitForTimeout(400);
 await page.goto('http://localhost:5173/');
 await expect(page.locator("h1").last()).toHaveText(/Keks/);
 
-const del = await conn.query("DELETE FROM product WHERE name = 'Keks'");
+//const del = await conn.query("DELETE FROM product WHERE name = 'Keks'");
+await page.goto('http://localhost:5173/admin/products/edit');
+await page.getByLabel("Select Product:").selectOption("Keks");
+await page.getByLabel("Name:").fill("Schokokeks");
+await page.getByText("Save Changes").last().click();
 
 await page.waitForTimeout(400);
 await page.goto('http://localhost:5173/');
-await expect(page.locator("h1").last()).not.toHaveText(/Keks/);
+await expect(page.locator("h1").last()).not.toHaveText(/Schokokeks/);
 
-});*/
+});
 
 function db_connection() {
   throw new Error('Function not implemented.');
