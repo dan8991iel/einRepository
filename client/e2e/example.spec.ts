@@ -26,8 +26,8 @@ test('has title', async ({ page }) => {
     await page.waitForTimeout(400)
 
   await page.goto('http://localhost:5173/');
-  await page.waitForTimeout(400)
-  await page.screenshot({path: 'test.png'});
+  //await page.waitForTimeout(400)
+  //await page.screenshot({path: 'test.png'});
 
   // Expect a title "to contain" a substring.
   await expect(page.locator("h1").last()).toHaveText(/Keks/);
